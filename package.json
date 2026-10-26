@@ -1,0 +1,11 @@
+{
+  "name": "stego-img",
+  "version": "0.1.0",
+  "description": "Hide and extract secret messages inside images, with Pollinations image generation (quest #18367)",
+  "type": "commonjs",
+  "scripts": {
+    "test": "node --test test/"
+  },
+  "keywords": ["steganography", "pollinations", "quest", "image"],
+  "license": "MIT"
+}
