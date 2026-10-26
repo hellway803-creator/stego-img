@@ -35,6 +35,35 @@
             const blob = await res.blob();
             return blob;
         },
+
+        async chatCompletion(prompt, { apiKey, model = "deepseek/deepseek-v4-flash", maxTokens = 200 } = {}) {
+            if (!apiKey) {
+                throw new Error("Missing Pollinations API key — get one at enter.pollinations.ai/keys");
+            }
+            const res = await fetch("https://gen.pollinations.ai/v1/chat/completions", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: "Bearer " + apiKey,
+                },
+                body: JSON.stringify({
+                    model,
+                    messages: [{
+                        role: "user",
+                        content: prompt,
+                    }],
+                    max_tokens: maxTokens,
+                }),
+            });
+            if (!res.ok) {
+                let detail = "";
+                try { detail = (await res.json()).error?.message || ""; } catch (_err) {}
+                throw new Error("Pollinations LLM error " + res.status + " " + detail);
+            }
+            const data = await res.json();
+            return (data.choices?.[0]?.message?.content || "").trim();
+        },
+
         async blobToImageData(blob) {
             const url = URL.createObjectURL(blob);
             try {

@@ -7,7 +7,7 @@ Built for the Pollinations quest **#18367: "An app, game or tool about messages 
 
 ## Features
 
-- **Encode**: pick an image (upload or generate with Pollinations), type a message, download the stego image.
+- **Encode**: pick an image (upload or generate with Pollinations), write a message — or let the **Polli LLM** write one for you — download the stego image.
 - **Decode**: upload any image and extract the hidden `STEG1` message, if present.
 - **Pollinations integration**: generate the base image from a text prompt via `gen.pollinations.ai`
   using your own key (BYOP). See [`pollinations-client.js`](./pollinations-client.js).
@@ -29,8 +29,10 @@ Open `index.html` locally, or deploy to any static host (Cloudflare Pages / GitH
 
 ## Pollinations integration (verified)
 
-- `pollinations-client.js` (repo root) calls `POST https://gen.pollinations.ai/v1/images/generations`
-  with `Authorization: Bearer <key>` (BYOP flow).
+- `pollinations-client.js` (repo root) calls both the **LLM chat** endpoint
+  (`POST https://gen.pollinations.ai/v1/chat/completions`, `PolliClient.chatCompletion`) and the
+  **image** endpoint (`POST https://gen.pollinations.ai/v1/images/generations`, `PolliClient.generateImage`),
+  always with `Authorization: Bearer <key>` (BYOP — users pay their own Pollen).
 - The app is bundled with `src/stego-core.js` (pure local steganography) and `app.js` (UI wiring).
 
 ## Tests
