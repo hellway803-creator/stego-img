@@ -1,5 +1,7 @@
 # 🖼️ stego-img
 
+[![Made with pollinations.ai](https://raw.githubusercontent.com/pollinations/pollinations/123ed07456106a4f752c0a22c584e8cadd2db6a8/packages/ui/src/brand/badge-made-with.svg)](https://pollinations.ai/?ref=badge)
+
 Hide secret messages inside images (LSB steganography), or extract them back.
 Built for the Pollinations quest **#18367: "An app, game or tool about messages hidden in images"**.
 
