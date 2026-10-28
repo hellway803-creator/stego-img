@@ -5,6 +5,12 @@
     let baseImageData = null;
     let resultUrl = null;
 
+    // BYOP: scoped key from the official <polli-connect> widget (OAuth consent flow).
+    function getKey() {
+        const c = document.querySelector("polli-connect");
+        return (c && c.apiKey) || sessionStorage.getItem("polli_byop_key") || "";
+    }
+
     function el(id) { return document.getElementById(id); }
     function status(id, text, cls) {
         const s = el(id);
@@ -48,7 +54,7 @@
 
     el("genBtn").addEventListener("click", async () => {
         const prompt = el("prompt").value.trim();
-        const apiKey = el("apiKey").value.trim();
+        const apiKey = getKey();
         if (!prompt) { status("encodeStatus", "Type a prompt first", "err"); return; }
         try {
             el("genBtn").disabled = true;
@@ -66,7 +72,7 @@
 
     el("llmBtn").addEventListener("click", async () => {
         const prompt = el("llmPrompt").value.trim();
-        const apiKey = el("apiKey").value.trim();
+        const apiKey = getKey();
         if (!prompt) { status("encodeStatus", "Type a prompt for the LLM first", "err"); return; }
         try {
             el("llmBtn").disabled = true;

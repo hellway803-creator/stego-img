@@ -37,7 +37,7 @@ message from an image. For the <b>#18367</b> Pollinations quest: an app about me
     <button id="genBtn">Generate with Polli ✨</button>
   </div>
   <div class="row" style="margin-top:8px">
-    <input type="password" id="apiKey" placeholder="Pollinations API key (enter.pollinations.ai/keys)">
+    <polli-connect app-key="pk_DvbxqdHhumygDeVD" budget="5" expiry="7" models="text,image"></polli-connect>
   </div>
   <div id="baseImgWrap"></div>
 </div>
@@ -68,6 +68,7 @@ message from an image. For the <b>#18367</b> Pollinations quest: an app about me
 
 <script src="src/stego-core.js"></script>
 <script src="pollinations-client.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/@pollinations/ui@0.1.0-alpha.20/dist/connect.js"></script>
 <script src="app.js"></script>
 </body>
 </html>
